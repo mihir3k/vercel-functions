@@ -130,6 +130,10 @@ func getCurrentlyPlaying() (*currentlyPlaying, error) {
 
 // Handler godoc
 func Handler(w http.ResponseWriter, r *http.Request) {
+	w.Header().Set("Access-Control-Expose-Headers", "Date,Age,Server,Content-Type,Content-Length,Cache-Control,Strict-Transport-Security,Access-Control-Allow-Origin")
+	w.Header().Set("Access-Control-Allow-Origin", "*")
+	w.Header().Set("Content-Type", "application/json")
+
 	currentlyPlaying, err := getCurrentlyPlaying()
 	if err != nil {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
@@ -141,6 +145,5 @@ func Handler(w http.ResponseWriter, r *http.Request) {
 		http.Error(w, err.Error(), http.StatusInternalServerError)
 		return
 	}
-	w.Header().Set("Content-Type", "application/json")
 	w.Write(response)
 }
