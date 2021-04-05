@@ -1,3 +1,3 @@
-module github.com/mihir3k/vercel-functions/api
+module github.com/mihirwastaken/vercel-functions/api
 
-go 1.15
+go 1.16
